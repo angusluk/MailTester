@@ -93,6 +93,12 @@ if __name__ == "__main__":
     server_host = '0.0.0.0'
     server_port = int(sys.argv[1]) if len(sys.argv) > 1 else 9090
     current_dir = os.path.dirname(os.path.abspath(__file__))
+    config = {'global':
+        {
+            'engine.timeout_monitor.frequency': 3
+        }
+    }
+    cherrypy.tree.mount(root(), config=config)
     cherrypy.config.update({
         'server.socket_host' : server_host,
         'server.socket_port' : server_port,
